@@ -21,6 +21,6 @@ pipelines:
   default:
     version: 1
     recipes:
-      bias: clodiadrp.recipes.recipe
-      flat: clodiadrp.recipes.recipe
-      image: clodiadrp.recipes.recipe
+      bias: clodiadrp.recipes.bias.Bias
+      flat: clodiadrp.recipes.flat.Flat
+      image: clodiadrp.recipes.image.Image
