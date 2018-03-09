@@ -23,7 +23,7 @@ setup(
     ],
     entry_points={
         'numina.pipeline.1': [
-            'CLODIA = clodiadrp.loader:load_drp',
+            'CLODIA = clodiadrp.loader:drp_load',
         ]
     },
     classifiers=[

@@ -1,6 +1,6 @@
 name: CLODIA
 configurations:
-  default: {}
+  values: {}
 modes:
   - key: bias
     name: Bias
