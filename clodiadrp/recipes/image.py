@@ -5,11 +5,14 @@ from numina.core import DataFrameType
 from numina.types.obsresult import ObservationResultType
 from numina.core.recipes import BaseRecipe
 
+from clodiadrp.products import MasterFlat, MasterBias
+
+
 class Image(BaseRecipe):
 
     obresult = Requirement(ObservationResultType, "Observation Result")
-    master_bias = Requirement(DataFrameType, "Master Bias")
-    master_flat = Requirement(DataFrameType, "Master Flat")
+    master_bias = Requirement(MasterBias, "Master Bias")
+    master_flat = Requirement(MasterFlat, "Master Flat")
     final = Product(DataFrameType)
 
     def run(self, rinput):

@@ -1,16 +1,16 @@
 
 
 from numina.core import Product, Requirement
-from numina.core import DataFrameType
 from numina.types.obsresult import ObservationResultType
 from numina.core.recipes import BaseRecipe
 
+from clodiadrp.products import MasterBias, MasterFlat
 
 class Flat(BaseRecipe):
 
     obresult = Requirement(ObservationResultType, "Observation Result")
-    master_bias = Requirement(DataFrameType, "Master Bias")
-    master_flat = Product(DataFrameType)
+    master_bias = Requirement(MasterBias, "Master Bias")
+    master_flat = Product(MasterFlat)
 
     def run(self, rinput):
 
