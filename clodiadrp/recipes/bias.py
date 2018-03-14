@@ -7,7 +7,7 @@ from numina.core.recipes import BaseRecipe
 from clodiadrp.products import MasterBias
 
 
-class Bias(BaseRecipe):
+class BiasRecipe(BaseRecipe):
 
     obresult = Requirement(ObservationResultType, "Observation Result")
     master_bias = Product(MasterBias)
@@ -16,8 +16,8 @@ class Bias(BaseRecipe):
 
         # Here the raw images are processed
         # and a final image myframe is created
-        myframe = None
+        myframe = rinput.obresult.frames[0].open()
         #
 
-        result = self.create_result(master_bias=myframe)  (5)
+        result = self.create_result(master_bias=myframe)
         return result

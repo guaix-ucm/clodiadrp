@@ -17,10 +17,16 @@ modes:
     summary: Image mode
     description: >
       Full description of the Image mode
+  - key: mosaic
+    name: ClodiaMosaic
+    summary: Mosaic of images
+    description: >
+      Full description of the Mosaic mode
 pipelines:
   default:
     version: 1
     recipes:
-      bias: clodiadrp.recipes.bias.Bias
+      bias: clodiadrp.recipes.bias.BiasRecipe
       flat: clodiadrp.recipes.flat.Flat
       image: clodiadrp.recipes.image.Image
+      mosaic: clodiadrp.recipes.mosaic.Mosaic
