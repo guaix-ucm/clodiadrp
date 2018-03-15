@@ -5,10 +5,15 @@ from numina.types.product import DataProductTag
 
 
 class MasterBias(DataFrameType, DataProductTag):
-    "Master Bias calibration image of CLODIA"
+    """Master Bias calibration image of CLODIA"""
     pass
 
 
 class MasterFlat(DataFrameType, DataProductTag):
-    "Master Flat calibration image of CLODIA"
+    """Master Flat calibration image of CLODIA"""
+    pass
+
+
+class SkyImage(DataFrameType): #, DataProductTag):
+    """Sky background image"""
     pass

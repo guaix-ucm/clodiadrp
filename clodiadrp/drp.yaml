@@ -17,6 +17,16 @@ modes:
     summary: Image mode
     description: >
       Full description of the Image mode
+  - key: image_with_sky
+    name: Image with Sky substraction
+    summary: Image mode with sky substraction
+    description: >
+      Full description of the Image mode
+  - key: sky
+    name: Sky Image
+    summary: Image obtained to substract sky
+    description: >
+      Full description of the Sky Image mode
   - key: mosaic
     name: ClodiaMosaic
     summary: Mosaic of images
@@ -28,5 +38,11 @@ pipelines:
     recipes:
       bias: clodiadrp.recipes.bias.BiasRecipe
       flat: clodiadrp.recipes.flat.Flat
-      image: clodiadrp.recipes.image.Image
+      image:
+        class: clodiadrp.recipes.image.ImageSkyRecipe
+        kwargs:
+          query_options:
+            sky_image: False
+      image_with_sky: clodiadrp.recipes.image.ImageSkyRecipe
+      sky: clodiadrp.recipes.image.SkyRecipe
       mosaic: clodiadrp.recipes.mosaic.Mosaic
