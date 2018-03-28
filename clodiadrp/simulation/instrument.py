@@ -1,7 +1,7 @@
 
 
 from numina.simulation.device import HWDevice
-
+import clodiadrp.simulation.sequences as seqs
 
 class ClodiaInstrument(HWDevice):
     """Simple MEGARA detector."""
@@ -14,6 +14,7 @@ class ClodiaInstrument(HWDevice):
 
         self.detector.set_parent(self)
         self.dev_shutter.set_parent(self)
+        self.sequences = seqs.clodia_sequences()
 
     @property
     def shutter(self):
