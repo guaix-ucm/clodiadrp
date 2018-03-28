@@ -1,6 +1,9 @@
 name: CLODIA
 configurations:
-  values: {}
+  values:
+    - 6211acd9-e75b-4b91-a59d-cb0e4a78dd24
+    - eb8a30e4-4aa1-4f4d-90cb-af1bb21edf50
+  default: 6211acd9-e75b-4b91-a59d-cb0e4a78dd24
 modes:
   - key: bias
     name: Bias

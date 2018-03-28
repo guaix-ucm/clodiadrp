@@ -15,8 +15,8 @@ setup(
     package_data={
         'clodiadrp': [
             'drp.yaml',
-
         ],
+        'clodiadrp.instrument.configs': ['*.json']
     },
     install_requires=[
         'numina >= 0.15',

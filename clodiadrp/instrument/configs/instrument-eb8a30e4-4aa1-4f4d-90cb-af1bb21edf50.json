@@ -1,0 +1,11 @@
+{
+ "description": "v2",
+ "uuid": "eb8a30e4-4aa1-4f4d-90cb-af1bb21edf50",
+ "date_start": "2018-02-01",
+ "date_end": null,
+ "type": "instrument",
+ "name": "CLODIA",
+ "components": {
+   "detector": "570427b2-e439-4bc8-95f6-6e33755794b3"
+  }
+}
