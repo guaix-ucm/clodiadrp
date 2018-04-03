@@ -31,12 +31,27 @@ class Mosaic(BaseRecipe):
 
         # Here the raw images are processed
         # and a final image myframe is created
+        partial_result = self.run_single(rinput)
+        new_result = self.aggregate_result(partial_result, rinput)
+        return new_result
+
+    def run_single(self, rinput):
+
+        # Here the raw images are processed
+        # and a final image myframe is created
         myframe = process_mosaic(rinput.obresult, self.logger)
-
-        newaccum = process_accum(myframe, rinput.accum, self.logger)
-
-        result = self.create_result(mosaic=myframe, accum=newaccum)
+        result = self.create_result(mosaic=myframe)
         return result
+
+    def aggregate_result(self, partial_result, rinput):
+        accum = rinput.accum
+        frame = partial_result.frame
+        newaccum = self.aggregate_frames(accum, frame)
+        partial_result.accum = newaccum
+        return partial_result
+
+    def aggregate_frames(self, accum, frame):
+        return process_accum(frame, accum, self.logger)
 
 
 def process_accum(result, accum, logger):
@@ -44,18 +59,19 @@ def process_accum(result, accum, logger):
 
     if accum is None:
         logger.debug('accum is None, first loop')
-        data_result = result[0].data[:]
-        data_result[:] = 1
-        hdu = fits.PrimaryHDU(data_result, header=result[0].header)
-        newaccum = fits.HDUList([hdu])
-        return newaccum
+        naccum = 0
+        accum_data = 0
     else:
-        logger.debug('accum is not None, posterior loop')
-        data_result = result[0].data[:]
-        data_result += 1
-        hdu = fits.PrimaryHDU(data_result, header=result[0].header)
-        newaccum = fits.HDUList([hdu])
-        return newaccum
+        naccum = accum[0].header['NUMACCUM']
+        accum_data = accum[0].data
+
+    logger.debug('accum is not None, naccum=%d', naccum)
+    nxaccum = naccum + 1
+    data_result = (result[0].data + naccum * accum_data) / nxaccum
+    hdu = fits.PrimaryHDU(data_result, header=result[0].header)
+    hdu.header['NUMACCUM'] = nxaccum
+    newaccum = fits.HDUList([hdu])
+    return newaccum
 
 
 def process_mosaic(obresult, logger):
