@@ -1,8 +1,8 @@
 {
  "description": "v1",
  "uuid": "6211acd9-e75b-4b91-a59d-cb0e4a78dd24",
- "date_start": "2018-01-01",
- "date_end": "2018-02-01",
+ "date_start": "2018-01-01T12:00:00.0",
+ "date_end": "2018-02-01T12:00:00.0",
  "type": "instrument",
  "name": "CLODIA",
  "components": {

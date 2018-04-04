@@ -11,6 +11,7 @@ def create_flat(source, time):
     data = detector.readout()
     hdu = fits.PrimaryHDU(data)
     hdu.header['INSTRUME'] = 'CLODIA'
+    hdu.header['DATE-OBS'] = '2018-01-15T03:40:12.5'
     return fits.HDUList([hdu])
 
 
