@@ -11,8 +11,7 @@ class Mosaic(BaseRecipe):
 
     obresult = Requirement(
         ObservationResultType,
-        description="Observation Result",
-        query_opts=Result('final', node='children', ignore_fail=True)
+        description="Observation Result"
     )
 
     accum_in = Requirement(
@@ -45,7 +44,7 @@ class Mosaic(BaseRecipe):
 
     def aggregate_result(self, partial_result, rinput):
         accum = rinput.accum
-        frame = partial_result.frame
+        frame = partial_result.mosaic
         newaccum = self.aggregate_frames(accum, frame)
         partial_result.accum = newaccum
         return partial_result
@@ -62,13 +61,15 @@ def process_accum(result, accum, logger):
         naccum = 0
         accum_data = 0
     else:
-        naccum = accum[0].header['NUMACCUM']
-        accum_data = accum[0].data
+        accum_f = accum.open()
+        naccum = accum_f[0].header['NUMACCUM']
+        accum_data = accum_f[0].data
 
     logger.debug('accum is not None, naccum=%d', naccum)
     nxaccum = naccum + 1
-    data_result = (result[0].data + naccum * accum_data) / nxaccum
-    hdu = fits.PrimaryHDU(data_result, header=result[0].header)
+    result_f = result.open()
+    data_result = (result_f[0].data + naccum * accum_data) / nxaccum
+    hdu = fits.PrimaryHDU(data_result, header=result_f[0].header)
     hdu.header['NUMACCUM'] = nxaccum
     newaccum = fits.HDUList([hdu])
     return newaccum
@@ -79,13 +80,16 @@ def process_mosaic(obresult, logger):
 
     if obresult.results:
         dat = []
-        fr0 = obresult.results[0].open()
-        header = fr0[0].header
-        for r in obresult.results:
+
+        for r in obresult.results.values():
             logger.debug('Result is: %s', r)
             dat.append(r.open()[0].data)
-
         sum_data = sum(dat)
+
+        # first element
+        fr0 = next(iter(obresult.results.values()))
+        fr0_o = fr0.open()
+        header = fr0_o[0].header
     else:
         import numpy
         sum_data = numpy.zeros((4,4))

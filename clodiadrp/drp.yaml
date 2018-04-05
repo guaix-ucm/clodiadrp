@@ -35,6 +35,7 @@ modes:
     summary: Mosaic of images
     description: >
       Full description of the Mosaic mode
+    builder: clodiadrp.modes.mosaic_builder
 pipelines:
   default:
     version: 1
