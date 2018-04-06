@@ -4,7 +4,7 @@ from numina.core import Product, Requirement
 from numina.core import DataFrameType
 from numina.types.obsresult import ObservationResultType
 from numina.core.recipes import BaseRecipe
-from numina.core.query import Result
+from numina.core.query import ResultOf
 
 
 class Mosaic(BaseRecipe):
@@ -19,7 +19,7 @@ class Mosaic(BaseRecipe):
         description='Accumulated result',
         optional=True,
         destination='accum',
-        query_opts=Result('mosaic.accum', node='prev-rel')
+        query_opts=ResultOf('mosaic.accum', node='prev-rel')
     )
 
     mosaic = Product(DataFrameType)

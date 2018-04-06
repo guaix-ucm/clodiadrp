@@ -7,7 +7,7 @@ from numina.core import Product, Requirement
 from numina.core import DataFrameType
 from numina.types.obsresult import ObservationResultType
 from numina.core.recipes import BaseRecipe
-from numina.core.query import Result
+from numina.core.query import ResultOf
 
 from clodiadrp.products import MasterFlat, MasterBias, SkyImage
 
@@ -41,7 +41,7 @@ class ImageSkyRecipe(BaseRecipe):
     # in drp.yaml
     sky_image = Requirement(SkyImage,
                             description="Previous Sky Image",
-                            query_opts=Result('sky.sky_image', node='prev'),
+                            query_opts=ResultOf('sky.sky_image', node='prev'),
                             default=None # This value is used only if the query is disabled
                             )
     final = Product(DataFrameType)

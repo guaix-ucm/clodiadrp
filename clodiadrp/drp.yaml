@@ -6,27 +6,27 @@ configurations:
   default: 6211acd9-e75b-4b91-a59d-cb0e4a78dd24
 modes:
   - key: bias
-    name: Bias
+    name: ClodiaBias
     summary: Bias mode
     description: >
       Full description of the Bias mode
   - key: flat
-    name: Flat
+    name: ClodiaFlat
     summary: Flat mode
     description: >
       Full description of the Flat mode
   - key: image
-    name: Image
+    name: ClodiaImage
     summary: Image mode
     description: >
       Full description of the Image mode
   - key: image_with_sky
-    name: Image with Sky substraction
+    name: ClodiaImage_with_sky_subs
     summary: Image mode with sky substraction
     description: >
       Full description of the Image mode
   - key: sky
-    name: Sky Image
+    name: ClodiaSkyImage
     summary: Image obtained to substract sky
     description: >
       Full description of the Sky Image mode
@@ -35,7 +35,9 @@ modes:
     summary: Mosaic of images
     description: >
       Full description of the Mosaic mode
-    builder: clodiadrp.modes.mosaic_builder
+    # builder: clodiadrp.modes.mosaic_builder
+    builder_options:
+       - result_of: { field: final, node: children, ignore_fail: True}
 pipelines:
   default:
     version: 1
