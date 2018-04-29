@@ -19,7 +19,7 @@ setup(
         'clodiadrp.instrument.configs': ['*.json']
     },
     install_requires=[
-        'numina >= 0.15',
+        'numina >= 0.16',
     ],
     entry_points={
         'numina.pipeline.1': [
