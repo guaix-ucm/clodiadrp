@@ -1,6 +1,6 @@
 
 
-from numina.core import Product, Requirement
+from numina.core import Result, Requirement
 from numina.types.obsresult import ObservationResultType
 from numina.core.recipes import BaseRecipe
 
@@ -10,7 +10,7 @@ from clodiadrp.products import MasterBias
 class BiasRecipe(BaseRecipe):
 
     obresult = Requirement(ObservationResultType, "Observation Result")
-    master_bias = Product(MasterBias)
+    master_bias = Result(MasterBias)
 
     def run(self, rinput):
 
