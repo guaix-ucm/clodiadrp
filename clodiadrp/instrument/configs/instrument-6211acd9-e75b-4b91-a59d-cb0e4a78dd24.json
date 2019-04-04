@@ -1,11 +1,11 @@
 {
- "description": "v1",
- "uuid": "6211acd9-e75b-4b91-a59d-cb0e4a78dd24",
- "date_start": "2018-01-01T12:00:00.0",
- "date_end": "2018-02-01T12:00:00.0",
- "type": "instrument",
- "name": "CLODIA",
- "components": {
+  "description": "v1",
+  "uuid": "6211acd9-e75b-4b91-a59d-cb0e4a78dd24",
+  "date_start": "2018-01-01T12:00:00.0",
+  "date_end": "2018-02-01T12:00:00.0",
+  "type": "instrument",
+  "name": "CLODIA",
+  "components": {
     "detector": "570427b2-e439-4bc8-95f6-6e33755794b3"
   }
 }
